@@ -7,6 +7,7 @@ var Particle = (function(){
         var _self = this;
         var _radius = 3;
         var _reached = false;
+        var _color;
         function apply_force(vec){
             _velocity = _velocity.add(vec);
         }
@@ -41,17 +42,28 @@ var Particle = (function(){
         this.has_reached = function(){
             return _reached;
         }
-
+        this.get_destination = function(){
+            return _destination;
+        }
+        this.set_color = function(color){
+            _color = color;
+        }
+        this.get_color = function(){
+            return _color;
+        }
 
     }
     Particle.prototype.display = function(context){
         if(this.has_reached()){
-            console.log("not drawing");
+            context.beginPath();
+            context.arc(this.get_destination().x, this.get_destination().y, this.get_radius(), 0, 2 * Math.PI, false);
+            context.fillStyle = this.get_color();
+            context.fill();
             return;
         } 
         context.beginPath();
         context.arc(this.get_position().x, this.get_position().y, this.get_radius(), 0, 2 * Math.PI, false);
-        context.fillStyle = '#0000FF';
+        context.fillStyle = this.get_color();
         context.fill();
     }
     return Particle;
