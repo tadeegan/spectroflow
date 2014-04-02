@@ -51,7 +51,6 @@ var Particle = (function(){
         this.get_color = function(){
             return _color;
         }
-
     }
     Particle.prototype.display = function(context){
         if(this.has_reached()){
