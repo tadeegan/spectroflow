@@ -79,7 +79,7 @@ Visualizer.prototype.draw = function() {
   var canvas = document.getElementById('line-canvas');
   var drawContext = canvas.getContext('2d');
 
-  // Draw the time domain chart.
+  // Draw the time domain waveform
   // how the signals change over time
   for (var i = 0; i < this.analyser.frequencyBinCount; i++) {
     var value = this.times[i];
