@@ -31,15 +31,21 @@ function start(){
     clearStartX = 0;
 
     setInterval(function(){
-        context.clearRect (clearStartX,0,canvas.width,canvas.height);
+        context.clearRect (clearStartX,0,canvas.width - clearStartX,canvas.height);
+        var toRemove = 0
         particles.forEach(function(entry) {
           if (!entry.has_reached()) {
               entry.step();
-              entry.display(context);
           } else {
-              clearStartX = entry.get_destination().x + 5;
+              clearStartX = entry.get_destination().x - 15;
+              toRemove++;
           }
+          entry.display(context);
         });
+        // clean up array if it gets too large
+        if (toRemove > 300) {
+            particles.splice(0, 200);
+        }
     },1000/FPS);
 }
 start();
