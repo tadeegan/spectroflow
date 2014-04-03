@@ -39,7 +39,7 @@
         }
         audioElement = document.getElementById("player");
         analyser = context.createAnalyser();
-        analyser.smoothingTimeConstant = .4;
+        analyser.smoothingTimeConstant = 0;
         analyser.maxDecibels = 0;
         audioElement.addEventListener("canplay", function() {
             source = context.createMediaElementSource(audioElement);
