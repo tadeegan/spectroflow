@@ -7,7 +7,6 @@ function Bucket(x,y,color){
         for(var i = 0; i < number; i++){
             var particle = new Particle(_xpos, _ypos, xpos, ypos+yrange*(i/number));
             particle.set_color(color);
-            particle.set_radius(4);
             particles.push(particle);
         }
         return particles;

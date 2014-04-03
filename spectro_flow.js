@@ -5,7 +5,7 @@ var buckets = [];
 var FPS = 40;
 
 var width = $(window).width()- 20;
-var height = $(window).height();
+var height = $(window).height() - 80;
 $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
 
@@ -27,11 +27,17 @@ function start(){
     var canvas = document.getElementById('flow-canvas');
     var context = canvas.getContext('2d');
     context.fillStyle    = '#222';  // set text color
-    
+
+    clearStartX = 0;
+
     setInterval(function(){
-        context.clearRect (0,0,canvas.width,canvas.height);
+        context.clearRect (clearStartX,0,canvas.width,canvas.height);
         particles.forEach(function(entry) {
-          entry.step();
+          if (!entry.has_reached()) {
+              entry.step();
+          } else {
+              clearStartX = entry.get_destination().x;
+          }
           entry.display(context);
         });
     },1000/FPS);

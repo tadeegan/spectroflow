@@ -19,6 +19,7 @@
         bpm = 413.8;
 
     var current_interval = 1;
+    var bubble_padding = 10;
 
     function freqToIndex(frequency) {
     	return Math.round(frequency/22050 * 1024);
@@ -51,13 +52,11 @@
                 },bpm);
         });
     }
-    
     function update() {
-    
         var frequencyData = new Uint8Array(analyser.frequencyBinCount);
         var dataArray = [0,0,0,0,0];
         analyser.getByteFrequencyData(frequencyData);
-    	
+
 //    	console.log(freqToIndex(bucket1low),freqToIndex(bucket1hi),freqToIndex(bucket2low),freqToIndex(bucket2hi),freqToIndex(bucket3low),freqToIndex(bucket3hi),freqToIndex(bucket4low),freqToIndex(bucket4hi),freqToIndex(bucket5low),freqToIndex(bucket5hi));
     	
     	for(var i = freqToIndex(bucket1low); i < freqToIndex(bucket1hi); i++){
@@ -85,17 +84,14 @@
     	var bubbles = 0;
 		for(var i = 0; i < 5; i++){
             var num_bubbles = dataArray[i];
-            var bubble_padding = 10;
             var range = num_bubbles*6;
-
-			var generated_particles = buckets[i].generate_bubbles(num_bubbles, current_interval * 6, bubbles*bubble_padding, num_bubbles*bubble_padding);
+            var generated_particles = buckets[i].generate_bubbles(num_bubbles, current_interval * 8, bubbles*bubble_padding + 5, num_bubbles*bubble_padding);
             bubbles += dataArray[i];
             for(j in generated_particles){
                 particles.push(generated_particles[j]);
             }
 		}
         current_interval++;
-
     }
     init();
 }());
