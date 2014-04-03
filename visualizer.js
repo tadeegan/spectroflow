@@ -1,4 +1,4 @@
-var WIDTH = $(window).width() * 3;
+var WIDTH = $(window).width() - 10;
 var HEIGHT = ($(window).height() - 80) * .24;
 $("#line-canvas").attr("width", WIDTH);
 $("#line-canvas").attr("height", HEIGHT);

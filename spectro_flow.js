@@ -4,7 +4,7 @@ var num_buckets = 5;
 var buckets = [];
 var FPS = 40;
 
-var width = $(window).width();
+var width = $(window).width() - 10;
 var height = ($(window).height() - 80) * .6;
 $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
