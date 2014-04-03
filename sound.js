@@ -24,7 +24,7 @@
     }
     
     function numDots(num) {
-    	return Math.round(25*num/255);
+    	return Math.round(25*num/500);
     }
 
     // Step 1 - Initialise the Audio Context
