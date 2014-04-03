@@ -5,10 +5,10 @@ var buckets = [];
 var FPS = 40;
 
 var width = $(window).width() * 3;
-var height = ($(window).height() - 80) * .4;
+var height = ($(window).height() - 80) * .6;
 $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
-$("#flow-canvas").attr("margin-bottom", ($(window).height() - 80) * .5);
+
 
 var padding = height / (num_buckets + 1);
 

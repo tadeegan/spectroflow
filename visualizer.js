@@ -1,5 +1,5 @@
 var WIDTH = $(window).width() * 3;
-var HEIGHT = ($(window).height() - 80) * .35;
+var HEIGHT = ($(window).height() - 80) * .24;
 $("#line-canvas").attr("width", WIDTH);
 $("#line-canvas").attr("height", HEIGHT);
 
@@ -84,7 +84,7 @@ Visualizer.prototype.draw = function() {
   for (var i = 0; i < this.analyser.frequencyBinCount; i++) {
     var value = this.times[i];
     var percent = value / 256;
-    var height = HEIGHT * percent * .66;
+    var height = 1.1 * HEIGHT * percent * .66;
     var offset = HEIGHT - height - 1;
     var barWidth = WIDTH/this.analyser.frequencyBinCount;
     drawContext.fillStyle = '#666699';
