@@ -9,7 +9,7 @@ var height = $(window).height();
 $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
 
-var padding = width / (num_buckets + 1);
+var padding = height / (num_buckets + 1);
 
 var colors = ['#00FF00','#FFFF00','#FF0000','#FF00FF','#0000FF','#00FFFF']
 for(var i = 0; i < num_buckets; i++){
