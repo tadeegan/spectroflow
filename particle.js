@@ -54,16 +54,14 @@ var Particle = (function(){
         }
     }
     Particle.prototype.display = function(context){
+        context.beginPath();
+        context.fillStyle = this.get_color();
         if(this.has_reached()){
-            context.beginPath();
             context.arc(this.get_destination().x, this.get_destination().y, this.get_radius(), 0, 2 * Math.PI, false);
-            context.fillStyle = this.get_color();
             context.fill();
             return;
         } 
-        context.beginPath();
-        context.arc(this.get_position().x, this.get_position().y, 5, 0, 2 * Math.PI, false);
-        context.fillStyle = this.get_color();
+        context.arc(this.get_position().x, this.get_position().y, this.get_radius(), 0, 2 * Math.PI, false);
         context.fill();
     }
     return Particle;
