@@ -1,5 +1,5 @@
 var Particle = (function(){
-    var DAMPING = 0.91;
+    var DAMPING = 0.8;
     var Particle = function(startx, starty, endx, endy){
         var _position = new Vector2(startx, starty);
         var _destination = new Vector2(endx, endy);
