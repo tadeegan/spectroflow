@@ -14,7 +14,7 @@ var padding = height / (num_buckets + 1);
 //var colors = ['#00FF00','#FFFF00','#FF0000','#FF00FF','#0000FF','#00FFFF']
 var colors = ['#2ECC40','#FFDC00','#FF4136','#0074D9','#7FDBFF'];
 for(var i = 0; i < num_buckets; i++){
-    var x = width - 30;
+    var x = width/2;
     var y = padding * i;
     var color = '#00FF00';
     buckets.push(new Bucket(x,y,colors[i]));
