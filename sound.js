@@ -58,10 +58,6 @@
     	
     	analyser.getByteFrequencyData(frequencyData);
     	
-    	var interval = Math.ceil(frequencyData.length/bucketNumber);
-    	
-    	var sum = 0;
-    	
 //    	console.log(freqToIndex(bucket1low),freqToIndex(bucket1hi),freqToIndex(bucket2low),freqToIndex(bucket2hi),freqToIndex(bucket3low),freqToIndex(bucket3hi),freqToIndex(bucket4low),freqToIndex(bucket4hi),freqToIndex(bucket5low),freqToIndex(bucket5hi));
     	
     	for(var i = freqToIndex(bucket1low); i < freqToIndex(bucket1hi); i++){
@@ -106,7 +102,4 @@
 
     }
     init();
-
-
-
 }());
