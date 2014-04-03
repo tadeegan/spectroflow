@@ -25,7 +25,7 @@ var Particle = (function(){
             if(_reached) return true;
             var direction_to_destination = _destination.sub(_position);
             var distance_to_destination = direction_to_destination.length();
-            var unit_direction = direction_to_destination.scale(1/distance_to_destination);
+            var unit_direction = direction_to_destination.scale(5/distance_to_destination);
             apply_force(unit_direction);
             _position = _position.add(_velocity);
             _velocity = _velocity.scale(DAMPING);
@@ -54,12 +54,14 @@ var Particle = (function(){
         }
     }
     Particle.prototype.display = function(context){
-        if(this.has_reached()){
-            return;
-        }
         context.beginPath();
         context.fillStyle = this.get_color();
-        context.arc(this.get_position().x, this.get_position().y, this.get_radius(), 0, 2 * Math.PI, false);
+        if(this.has_reached()){
+            context.arc(this.get_destination().x, this.get_destination().y, 3, 0, 2 * Math.PI, false);
+            context.fill();
+            return;
+        } 
+        context.arc(this.get_position().x, this.get_position().y, 4, 0, 2 * Math.PI, false);
         context.fill();
     }
     return Particle;
