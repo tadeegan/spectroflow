@@ -4,8 +4,11 @@ var num_buckets = 5;
 var buckets = [];
 var FPS = 40;
 
-var width = $("#flow-canvas").width();
-var height = $("#flow-canvas").height();
+var width = $(window).width()- 20;
+var height = $(window).height();
+$("#flow-canvas").attr("width", width);
+$("#flow-canvas").attr("height", height);
+
 var padding = width / (num_buckets + 1);
 
 var colors = ['#00FF00','#FFFF00','#FF0000','#FF00FF','#0000FF','#00FFFF']

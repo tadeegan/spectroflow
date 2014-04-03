@@ -22,6 +22,7 @@ var Particle = (function(){
         }
         //retuns true if the step reaches the destination
         this.step = function(){
+            if(_reached) return true;
             var direction_to_destination = _destination.sub(_position);
             var distance_to_destination = direction_to_destination.length();
             var unit_direction = direction_to_destination.scale(1/distance_to_destination);
