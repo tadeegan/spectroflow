@@ -3,11 +3,28 @@
     </body>
 
     <body style="background-color:#222">
-      <canvas id="flow-canvas" width="100%" height="100%" style="background-color:#222; margin-bottom:40px;"></canvas>
+      <canvas id="flow-canvas" width="50%" height="50%" style="background-color:#222; margin-bottom:40px;"></canvas>
+      <canvas id="line-canvas" width="50%" height="100%" style="background-color:#222; margin-bottom:180px;"></canvas>
       <audio id="player" src="http://localhost:8000/song/cut.mp3" preload="none" controls style="position:fixed; bottom:0px; left:0px">
       </audio>
     </body>
     <script src="jquery.js"></script>
+
+    <!-- time-domain line graph -->
+    <script src="loader.js"></script>
+    <script src="visualizer.js"></script>
+    <script>
+        var vis = new Visualizer();
+
+        document.querySelector('audio').addEventListener('playing', function() {
+            vis.togglePlayback();
+        });
+        document.querySelector('audio').addEventListener('pause', function() {
+            vis.togglePlayback();
+        });
+    </script>
+    <!-- -->
+
     <script src="bucket.js"></script>
     <script src="Vector2.js"></script>
     <script src="particle.js"></script>

@@ -5,9 +5,10 @@ var buckets = [];
 var FPS = 40;
 
 var width = $(window).width() * 3;
-var height = $(window).height() - 80;
+var height = ($(window).height() - 80) * .4;
 $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
+$("#flow-canvas").attr("margin-bottom", ($(window).height() - 80) * .5);
 
 var padding = height / (num_buckets + 1);
 
@@ -30,8 +31,14 @@ function start(){
 
     clearStartX = 0;
 
+    var canvas2 = document.getElementById('line-canvas');
+    var context2 = canvas2.getContext('2d');
+
+
     setInterval(function(){
         context.clearRect (clearStartX,0,canvas.width - clearStartX,canvas.height);
+        context2.clearRect (0,0,canvas2.width,canvas2.height);
+
         var toRemove = 0
         particles.forEach(function(entry) {
           if (!entry.has_reached()) {
