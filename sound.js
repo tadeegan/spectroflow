@@ -16,7 +16,7 @@
         bucket4hi=6000,
         bucket5low=6001,
         bucket5hi=16000,
-        cutbpm = 521.7,
+        cutbpm = 100,
         goldlovebpm = 413.8,
         bpm = cutbpm;
 
@@ -93,6 +93,10 @@
                 particles.push(generated_particles[j]);
             }
 		}
+        if(current_interval*8-20 > width){
+            current_interval = 0;
+            clear_canvas();
+        }
         current_interval++;
     }
     init();

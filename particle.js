@@ -3,7 +3,7 @@ var Particle = (function(){
     var Particle = function(startx, starty, endx, endy){
         var _position = new Vector2(startx, starty);
         var _destination = new Vector2(endx, endy);
-        var _velocity = new Vector2(Math.random()*20-10,Math.random()*3-1);
+        var _velocity = new Vector2(Math.random()*20-10,Math.random()*20-10);
         var _self = this;
         var _radius = 3;
         var _reached = false;
@@ -31,6 +31,7 @@ var Particle = (function(){
             _velocity = _velocity.scale(DAMPING);
             if(distance_to_destination < _velocity.length()){
                 _reached = true;
+                _radius = 3;
             }
             return _reached;
         }
