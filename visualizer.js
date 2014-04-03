@@ -87,8 +87,8 @@ Visualizer.prototype.draw = function() {
     var height = HEIGHT * percent * .66;
     var offset = HEIGHT - height - 1;
     var barWidth = WIDTH/this.analyser.frequencyBinCount;
-    drawContext.fillStyle = '#666699';
-    drawContext.fillRect(i * barWidth, offset, 6, 6);
+    drawContext.fillStyle = '#666680';
+    drawContext.fillRect(i * barWidth, offset, 5, 5);
   }
 
   if (this.isPlaying) {
