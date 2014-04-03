@@ -16,7 +16,9 @@
         bucket4hi=6000,
         bucket5low=6001,
         bucket5hi=16000,
-        bpm = 413.8;
+        cutbpm = 521.7,
+        goldlovebpm = 413.8,
+        bpm = cutbpm;
 
     var current_interval = 1;
     var bubble_padding = 10;
