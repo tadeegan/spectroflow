@@ -1,9 +1,9 @@
 var Particle = (function(){
-    var DAMPING = 0.93;
+    var DAMPING = 0.91;
     var Particle = function(startx, starty, endx, endy){
         var _position = new Vector2(startx, starty);
         var _destination = new Vector2(endx, endy);
-        var _velocity = new Vector2(Math.random()*20-10,Math.random()*3-1);
+        var _velocity = new Vector2(Math.random()*10-5,Math.random()*30-15);
         var _self = this;
         var _radius = 10;
         var _reached = false;
