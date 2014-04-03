@@ -24,7 +24,7 @@
     }
     
     function numDots(num) {
-    	return Math.round(8*num/255);
+    	return Math.round(25*num/255);
     }
 
     // Step 1 - Initialise the Audio Context
@@ -39,7 +39,7 @@
         }
         audioElement = document.getElementById("player");
         analyser = context.createAnalyser();
-//        analyser.smoothingTimeConstant = .5;
+        analyser.smoothingTimeConstant = .4;
         analyser.maxDecibels = 0;
         audioElement.addEventListener("canplay", function() {
             source = context.createMediaElementSource(audioElement);
@@ -47,7 +47,7 @@
             source.connect(context.destination);
             setInterval(function(){
             	update();
-                },500);
+                },659.34);
         });
     }
     
