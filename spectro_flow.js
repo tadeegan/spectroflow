@@ -10,13 +10,13 @@ $("#flow-canvas").attr("width", width);
 $("#flow-canvas").attr("height", height);
 
 
-var padding = height / (num_buckets + 1);
+var padding = height / (num_buckets);
 
 //var colors = ['#00FF00','#FFFF00','#FF0000','#FF00FF','#0000FF','#00FFFF']
 var colors = ['#2ECC40','#FFDC00','#FF4136','#0074D9','#7FDBFF'];
 for(var i = 0; i < num_buckets; i++){
     var x = width;
-    var y = padding * i;
+    var y = padding + padding * i;
     var color = '#00FF00';
     buckets.push(new Bucket(x,y,colors[i]));
 }
