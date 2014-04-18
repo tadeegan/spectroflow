@@ -1,4 +1,4 @@
-(function() {
+var sound = (function() {
     var context,
         soundSource,
         soundBuffer,
@@ -6,9 +6,9 @@
         source,
         audioElement,
         bucketNumber = 5,
-        bucket1low=0,
-        bucket1hi=80,
-        bucket2low=81,
+        bucket1low=80,
+        bucket1hi=100,
+        bucket2low=101,
         bucket2hi=250,
         bucket3low=600,
         bucket3hi=800,
@@ -28,7 +28,7 @@
     }
     
     function numDots(num) {
-    	return Math.round(25*num/500);
+    	return Math.round(Math.pow((3*num/100),1.3));
     }
 
     // Step 1 - Initialise the Audio Context
@@ -51,7 +51,7 @@
             source.connect(context.destination);
             setInterval(function(){
               update();
-                },bpm);
+            },bpm);
         });
     }
     function update() {
@@ -59,7 +59,6 @@
         var dataArray = [0,0,0,0,0];
         analyser.getByteFrequencyData(frequencyData);
 
-//    	console.log(freqToIndex(bucket1low),freqToIndex(bucket1hi),freqToIndex(bucket2low),freqToIndex(bucket2hi),freqToIndex(bucket3low),freqToIndex(bucket3hi),freqToIndex(bucket4low),freqToIndex(bucket4hi),freqToIndex(bucket5low),freqToIndex(bucket5hi));
     	
     	for(var i = freqToIndex(bucket1low); i < freqToIndex(bucket1hi); i++){
     		dataArray[0]+=frequencyData[i];
@@ -95,9 +94,11 @@
 		}
         if(current_interval*8-20 > width){
             current_interval = 0;
+            particles= [];
+            trim_width = 0;
             clear_canvas();
         }
         current_interval++;
     }
-    init();
+    return init;
 }());

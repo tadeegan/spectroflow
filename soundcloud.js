@@ -14,7 +14,16 @@ $("#soundcloud-submit").on("click", function(event){
         console.log(response);
         if(response.kind === "track"){
             var stream = response.stream_url + "?client_id=a0235b299e3749780c968e5272467c85";
-            $("#player").attr("src", stream);
+            var player = $("#player");
+            player.attr("src", stream);
+            $("#soundcloud-container").css("display","none");
+            sound();
+            $("#player").css("display","");
+            setTimeout(function(){
+                player.trigger("play");
+            }, 1000);
+            //
+            //player.trigger("play");
         }
     });  
 });
