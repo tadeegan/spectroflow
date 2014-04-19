@@ -1,7 +1,8 @@
-var WIDTH = $(window).width() - 10;
-var HEIGHT = ($(window).height() - 80) * .24;
-$("#line-canvas").attr("width", WIDTH);
-$("#line-canvas").attr("height", HEIGHT);
+var WIDTH = window.innerWidth - 10;
+var HEIGHT = (window.innerHeight - 80) * .24;
+var lineCanvas = document.getElementById('line-canvas');
+lineCanvas.setAttribute('width', WIDTH);
+lineCanvas.setAttribute('height', HEIGHT);
 
 var SMOOTHING = 1.0;
 var FFT_SIZE = 2048;

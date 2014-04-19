@@ -51,7 +51,7 @@
             source.connect(context.destination);
             setInterval(function(){
               update();
-                },bpm);
+            },bpm);
         });
     }
     function update() {
