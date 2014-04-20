@@ -1,9 +1,11 @@
-var Particle = (function(){
+var App = App || {};
+
+App.Particle = (function(){
     var DAMPING = 0.8;
     var Particle = function(startx, starty, endx, endy){
-        var _position = new Vector2(startx, starty);
-        var _destination = new Vector2(endx, endy);
-        var _velocity = new Vector2(Math.random()*20 - 10,Math.random()*45-25);
+        var _position = new App.Vector2(startx, starty);
+        var _destination = new App.Vector2(endx, endy);
+        var _velocity = new App.Vector2(Math.random()*20 - 10,Math.random()*45-25);
         var _self = this;
         var _radius = 3;
         var _reached = false;
@@ -54,6 +56,7 @@ var Particle = (function(){
             return _color;
         }
     }
+
     Particle.prototype.display = function(context){
         context.beginPath();
         context.fillStyle = this.get_color();
@@ -65,5 +68,6 @@ var Particle = (function(){
         context.arc(this.get_position().x, this.get_position().y, this.get_radius(), 0, 2 * Math.PI, false);
         context.fill();
     }
+
     return Particle;
 })();

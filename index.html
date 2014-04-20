@@ -1,26 +1,25 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/pure.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
     <body>
-    </body>
-    <link rel="stylesheet" type="text/css" href="pure.css">
-    <body style="background-color:#222">
-        <canvas id="flow-canvas" width="100" height="100" style="background-color:#222; margin-bottom:20px;"></canvas>
-        <audio id="player" preload="none" controls style="position:fixed; bottom:0px; left:0px">
+        <canvas id="flow-canvas" width="100" height="100"></canvas>
+        <audio id="player" preload="none" controls>
         </audio>
-        <div id="soundcloud-container"  style="position:fixed; bottom:10px; right:20px; color: white; background-color: #333; padding: 10px;">
-            <div style="text-align:center; font: helvetica; font-size: 50px; padding-bottom: 30px;">
-                Spectroflow
-            </div>
+        <div id="soundcloud-container">
+            <div class="header">Spectroflow</div>
             Sound Cloud Url:
             <input id="soundcloud-input" placeholder="soundcloud song url" value="https://soundcloud.com/flux-pavilion/dj-fresh-gold-dust-flux"></input>
             <button type="url" class="pure-button pure-button-primary" id="soundcloud-submit">submit</button>
         </div>
     </body>
-    <script src="jquery.js"></script>
-
-    <script src="bucket.js"></script>
-    <script src="Vector2.js"></script>
-    <script src="particle.js"></script>
-    <script src="spectro_flow.js"></script>
+    <script src="lib/jquery.js" type="text/javascript"></script>
+    <script src="bucket.js" type="text/javascript"></script>
+    <script src="Vector2.js" type="text/javascript"></script>
+    <script src="particle.js" type="text/javascript"></script>
+    <script src="spectro_flow.js" type="text/javascript"></script>
     <script src="sound.js" type="text/javascript"></script>
-    <script src="soundcloud.js"></script>
+    <script src="soundcloud.js" type="text/javascript"></script>
 </html>
