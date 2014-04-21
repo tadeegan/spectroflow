@@ -1,0 +1,35 @@
+body {
+	background-color: #222;
+}
+
+#flow-canvas {
+	background-color: #222;
+	margin-bottom: 20px;
+}
+
+#player {
+	bottom: 0;
+	display: none;
+	left: 0;
+	position: fixed;
+}
+
+#soundcloud-container {
+	background-color: #333;
+	color: #fff;
+	height: 124px;
+	left: 0;
+	margin: -62px auto 0 auto;
+	padding: 10px;
+	position: fixed;
+	right: 0;
+	top: 50%;
+	width: 384px;
+}
+
+#soundcloud-container .header {
+	font: helvetica;
+	font-size: 50px;
+	padding-bottom: 30px;
+	text-align:center;
+}

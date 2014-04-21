@@ -1,64 +1,64 @@
-var particles = [];
-var num_sections = 100;
-var num_buckets = 5;
-var buckets = [];
-var FPS = 40;
+"use strict";
 
-var width = $(window).width() - 10;
-var height = ($(document).height() - 80);
-$("#flow-canvas").attr("width", width);
-$("#flow-canvas").attr("height", height);
+var App = App || {};
+(function() {
+    var num_sections = 100;
+    var num_buckets = 5;
+    var FPS = 40;
 
-var url_selector = $("#soundcloud-container");
-url_selector.css("right",($("#flow-canvas").width() - url_selector.width())/2);
-url_selector.css("bottom", ($("#flow-canvas").height() - url_selector.height())/2)
+    App.buckets = [];
+    App.particles = [];
+    App.width = window.innerWidth - 10;
+    App.height = window.innerHeight - 80;
+    App.trim_width = 0;
 
-$("#player").css("display","none");
+    var flowCanvas = document.getElementById('flow-canvas');
+    flowCanvas.setAttribute('width', App.width);
+    flowCanvas.setAttribute('height', App.height);
 
-var padding = height / (num_buckets + 1);
+    var padding = App.height / (num_buckets + 1);
+    var colors = ['#2ECC40','#FFDC00','#FF4136','#0074D9','#7FDBFF'];
+    for(var i = 0; i < num_buckets; i++) {
+        var x = App.width;
+        var y = padding + padding * i;
+        App.buckets.push(new App.Bucket(x,y,colors[i]));
+    }
 
-//var colors = ['#00FF00','#FFFF00','#FF0000','#FF00FF','#0000FF','#00FFFF']
-var colors = ['#2ECC40','#FFDC00','#FF4136','#0074D9','#7FDBFF'];
-for(var i = 0; i < num_buckets; i++){
-    var x = width;
-    var y = padding + padding * i;
-    var color = '#00FF00';
-    buckets.push(new Bucket(x,y,colors[i]));
-}
+    function start() {
+        var canvas = document.getElementById('flow-canvas');
+        var context = canvas.getContext('2d');
+        var clearStartX = 0;
 
-var particles = [];
+        context.fillStyle = '#222'; // set text color
 
-var trim_width = 0;
+        setInterval(function() {
+            App.clear_canvas();
 
-function start(){
-    var canvas = document.getElementById('flow-canvas');
-    var context = canvas.getContext('2d');
-    context.fillStyle    = '#222';  // set text color
+            var toRemove = 0;
+            var particles = App.particles;
+            for (var i = 0, l = particles.length; i < l; ++i) {
+                var entry = particles[i];
+                if (!entry.has_reached()) {
+                    entry.step();
+                }
+                else {
+                    clearStartX = entry.get_destination().x - 15;
+                    toRemove++;
+                }
+                entry.display(context);
+            }
+            if (particles.length > 1000) {
+                App.trim_width = particles[300].get_position().x + 40;
+                particles.splice(0, 300);
+            }
+        }, 1000 / FPS);
+    }
 
-    clearStartX = 0;
+    App.clear_canvas = function() {
+        var canvas = document.getElementById('flow-canvas');
+        var context = canvas.getContext('2d');
+        context.clearRect(App.trim_width,0,canvas.width,canvas.height);
+    }
 
-    setInterval(function(){
-        clear_canvas();
-
-        var toRemove = 0
-        particles.forEach(function(entry) {
-          if (!entry.has_reached()) {
-              entry.step();
-          } else {
-              clearStartX = entry.get_destination().x - 15;
-              toRemove++;
-          }
-          entry.display(context);
-        });
-        if (particles.length > 1000) {
-            trim_width = particles[300].get_position().x + 40;
-            particles.splice(0, 300);
-        }
-    },1000/FPS);
-}
-function clear_canvas(){
-    var canvas = document.getElementById('flow-canvas');
-    var context = canvas.getContext('2d');
-    context.clearRect (trim_width,0,canvas.width,canvas.height);
-}
-start();
+    start();
+})();

@@ -1,4 +1,6 @@
-var sound = (function() {
+var App = App || {};
+
+App.sound = (function() {
     var context,
         soundSource,
         soundBuffer,
@@ -22,11 +24,13 @@ var sound = (function() {
 
     var current_interval = 1;
     var bubble_padding = 10;
+    var buckets = App.buckets;
+    var width = App.width;
 
     function freqToIndex(frequency) {
     	return Math.round(frequency/22050 * 1024);
     }
-    
+
     function numDots(num) {
     	return Math.round(Math.pow((3*num/100),1.3));
     }
@@ -49,17 +53,15 @@ var sound = (function() {
             source = context.createMediaElementSource(audioElement);
             source.connect(analyser);
             source.connect(context.destination);
-            setInterval(function(){
-              update();
-            },bpm);
+            setInterval(update, bpm);
         });
     }
+
     function update() {
         var frequencyData = new Uint8Array(analyser.frequencyBinCount);
         var dataArray = [0,0,0,0,0];
         analyser.getByteFrequencyData(frequencyData);
 
-    	
     	for(var i = freqToIndex(bucket1low); i < freqToIndex(bucket1hi); i++){
     		dataArray[0]+=frequencyData[i];
     	}
@@ -81,7 +83,7 @@ var sound = (function() {
     	dataArray[2]= numDots(Math.round(dataArray[2]/(freqToIndex(bucket3hi) - freqToIndex(bucket3low))));
     	dataArray[3]= numDots(Math.round(dataArray[3]/(freqToIndex(bucket4hi) - freqToIndex(bucket4low))));
     	dataArray[4]= numDots(Math.round(dataArray[4]/(freqToIndex(bucket5hi) - freqToIndex(bucket5low))));
-    	
+
     	var bubbles = 0;
 		for(var i = 0; i < 5; i++){
             var num_bubbles = dataArray[i];
@@ -89,14 +91,14 @@ var sound = (function() {
             var generated_particles = buckets[i].generate_bubbles(num_bubbles, current_interval * 8, bubbles*bubble_padding + 5, num_bubbles*bubble_padding);
             bubbles += dataArray[i];
             for(j in generated_particles){
-                particles.push(generated_particles[j]);
+                App.particles.push(generated_particles[j]);
             }
 		}
         if(current_interval*8-20 > width){
             current_interval = 0;
-            particles= [];
-            trim_width = 0;
-            clear_canvas();
+            App.particles = [];
+            App.trim_width = 0;
+            App.clear_canvas();
         }
         current_interval++;
     }
