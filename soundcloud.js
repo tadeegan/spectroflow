@@ -8,7 +8,7 @@ $("#soundcloud-submit").on("click", function(event){
             player.attr("src", stream);
             $("#soundcloud-container").css("display","none");
             App.sound();
-            $("#player").css("display","");
+            $("#player").show();
             setTimeout(function(){
                 player.trigger("play");
             }, 1000);
